@@ -1,32 +1,33 @@
-# 📄 Simple Resume Screening System (Python)
+# 🎓 Student Grade Management System (Python CLI)
 
-### Project Title: Simple Resume Screening System
+### Project Title: Student Grade Management System
 
 ## 🌟 1. Overview
 
-This project is a command-line tool built using **Python** designed to automate the initial screening of job applicants. It helps recruiters quickly determine if a candidate's resume meets the minimum requirements for a job opening.
+This project is a simple, **menu-driven command-line tool (CLI)** built using **Python**. It provides teachers and administrators with a basic, fast system to manage student records and grades efficiently. All data is stored in memory for quick operations.
 
-The system works by comparing a candidate's resume text against a list of required skills specified in a job description file, providing a clear **match score** and a final **selection verdict (SELECTED/REJECTED)**.
+The system automates basic record-keeping, allowing users to move away from messy paper or complex spreadsheet solutions.
 
 ---
 
 ## ✨ 2. Key Features
 
-* **File-Based Input:** Reads input cleanly from `resume.txt` and `job_description.txt` files.
-* **Keyword Matching:** Searches for specific skills defined by the recruiter in the JD file.
-* **Configurable Threshold:** The minimum passing score (e.g., 60%) can be easily adjusted.
-* **Detailed Reporting:** Shows exactly which skills were **Found (✓)** and which are **Missing (✗)**.
-* **Activity Logging:** Automatically records all screening actions in a `screening_log.txt` file.
-* **Robust Error Handling:** Alerts the user if input files are missing or empty.
+The program offers six core functions accessible via a simple numbered menu:
+
+* **Add Student:** Takes name and grade; **prevents duplicate names** (unique student identity).
+* **Show All Students:** Displays the complete list of all records in a clear, formatted table.
+* **Search Student:** Finds a record instantly using the student's name (search is **case-insensitive**).
+* **Update Grade:** Allows changing the grade for an existing student.
+* **Delete Student:** Safely removes a record from the roster.
+* **Exit Program:** Closes the application gracefully.
 
 ---
 
 ## 🛠️ 3. Technologies Used
 
-* **Programming Language:** Python 3
-* **Libraries:**
-    * **`re`:** Used for text processing and basic pattern matching.
-    * **`datetime`:** Used for timestamping log entries.
+* **Programming Language:** Python 3.10+
+* **Data Structure:** **List of Tuples** (e.g., `[("Name", "Grade")]`) is used for fast, in-memory storage.
+* **Control Flow:** Uses the modern **`match-case`** statement for clean menu handling.
 
 ---
 
@@ -37,55 +38,35 @@ You only need to have **Python 3** installed on your system.
 
 ### Steps to Run
 
-1.  **Clone the Repository:** (If applicable, when hosted on GitHub)
+1.  **Clone the Repository:** (Assuming you have cloned the project files locally)
     ```bash
-    git clone [your_repo_link_here]
-    cd resume-screening-system
+    cd student-grade-management-system
     ```
-2.  **Create Input Files:** In the project folder, create two plain text files:
-    * `resume.txt` (Paste the candidate's resume content here.)
-    * `job_description.txt` (Paste the job requirements here, including the skills.)
-3.  **Run the Script:** Execute the main Python file from your terminal:
+2.  **Run the Script:** Execute the main Python file from your terminal:
     ```bash
-    python resume_screener.py
+    python grade_management_system.py  # Replace with your actual file name
     ```
-
-### Important Input Instruction
-
-The job description file (`job_description.txt`) **must** include the skills list using the tag `REQUIRED_SKILLS:` for the program to successfully extract keywords.
-
-Example format in `job_description.txt`:
-> ```
-> REQUIRED_SKILLS: python, java, sql, teamwork
-> We are looking for a developer...
-> ```
+3.  **Start Interaction:** The program will immediately display the main menu, and you can interact by typing numbers `1` through `6`.
 
 ---
 
 ## 🧪 5. Instructions for Testing
 
-To test the different outcomes of the system:
+Test the program by executing these key scenarios to ensure reliability:
 
-1.  **Test Case 1 (SELECTED):** Ensure `resume.txt` contains most of the skills listed under `REQUIRED_SKILLS:` in the JD (e.g., matching 4 out of 6 skills for a 66.67% score).
-2.  **Test Case 2 (REJECTED):** Update `resume.txt` to only contain 1 or 2 of the required skills (e.g., matching 2 out of 6 skills for a low score).
-3.  **Test Case 3 (Error Handling):** Delete either `resume.txt` or `job_description.txt` and run the script to confirm the `Error: Cannot find [filename]` message appears.
+1.  **Test Case 1 (Successful Operations):**
+    * Select `1` to **Add** "John Doe" with Grade "A".
+    * Select `4` to **Update** "John Doe" to Grade "A+".
+    * Select `2` to **Show All** and verify the change.
+2.  **Test Case 2 (Edge Cases):**
+    * Select `1` to **Add** "John Doe" again. Verify the **duplicate prevention error** appears.
+    * Select `3` and search for "john doe" (lowercase) to confirm the **case-insensitive search** works.
+3.  **Test Case 3 (Error Handling):**
+    * Enter an invalid menu choice (e.g., `9`). Verify the "Invalid Choice" message appears.
+    * Select `5` and try to delete a name that doesn't exist. Verify the "Student Not Found" message appears.
 
 ---
 
 ## 🖥️ 6. Sample Output
 
-Here is an example of the program's result displayed in the terminal:
-
-
-=============================================== RESUME SCREENING SYSTEM
-Loading files...
-
---- ANALYSIS RESULTS ---
-
-Overall Match Score: 66.67%
-
-Skills Detected in Resume: ✓ python ✓ sql ✓ communication ✓ leadership
-
-Skills Not Found: ✗ java ✗ teamwork ✗ problem solving
-
-=============================================== FINAL DECISION: SELECTED Reason: Candidate meets requirements with 66.67% match
+Here is what the menu and key operations look like in the terminal:
